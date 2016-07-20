@@ -1,0 +1,48 @@
+<% if cat.persisted? %>
+  <% action, method, button_text = cat_url(cat), "PATCH", "Update the cat!" %>
+<% else  %>
+  <% action, method, button_text = cats_url, "POST", "Create the cat!" %>
+<% end  %>
+
+
+<!-- Why dosent' get work in the method attr? -->
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+
+  <label for="cat_name">Name:</label>
+  <input type="text" name="cat[name]" id="cat_name" value="<%= cat.name %>">
+
+  <br><br>
+
+  <label for="cat_birth_date">Birth Date:</label>
+  <input type="date" name="cat[birth_date]" id="cat_birth_date" value="<%= cat.birth_date %>">
+
+  <br><br>
+
+  <label for="cat_color">Color:</label>
+
+  <select name="cat[color]" id="cat_color">
+    <option disabled selected>-- Select a color --</option>
+    <option value="Red">Red</option>
+    <option value="Orange">Orange</option>
+    <option value="Yellow">Yellow</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    <option value="Black">Black</option>
+  </select>
+
+  <br><br>
+
+  <label for="cat_gender">Gender:</label>
+  Male:<input type="radio" name="cat[sex]" value="M" checked>
+  Female:<input type="radio" name="cat[sex]" value="F">
+
+  <br><br>
+
+  <label for="cat_description">Description:</label>
+  <input type="textarea" name="cat[description]" id="cat_description" value="<%= cat.description %>">
+
+  <br><br>
+
+  <input type="submit" value="<%= button_text %>">
+</form>

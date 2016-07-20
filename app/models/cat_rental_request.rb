@@ -1,0 +1,1 @@
+class CatRentalRequest < ActiveRecord::Base
